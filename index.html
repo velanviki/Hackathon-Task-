@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <script>
+
+        var searchBar = document.createElement("INPUT");
+        searchBar.setAttribute("type", "search");
+        searchBar.setAttribute("placeholder", "search");
+        searchBar.style.marginBottom = "100px";
+        searchBar.style.width = " 357px";
+        searchBar.style.margin = " 4px";
+
+        document.body.appendChild(searchBar);
+
+
+
+        
+        async function fetchdata() {
+            try {
+                var catData = await fetch("https://cataas.com/api/cats");
+                var cats = await catData.json()
+
+                cats.forEach(element => {
+                    var list = document.createElement("div");
+                    list.innerText = element.id;
+                    list.style.marginBottom = "75px";
+
+
+
+                    var cat = document.createElement("img");
+                    cat.setAttribute("src", "https://cataas.com/cat/li");
+                    cat.style.width = "150px"
+                    cat.style.marginBottom = "5px";
+                    cat.style.marginTop = "5px";
+                    cat.style.display = "flex";
+                    cat.style.flexdirection = "row"
+                    cat.style.flexWrap = "wrap"
+
+                    list.appendChild(cat);
+
+
+                    document.body.appendChild(list);
+
+                });
+
+
+
+                console.log(cats);
+
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+
+        fetchdata()
+
+
+    </script>
+</body>
+
+</html>
